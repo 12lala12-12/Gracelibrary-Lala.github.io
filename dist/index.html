@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraceBooks - Christian Digital Library</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166d67;
+            --accent-color: #c28e0e;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Merriweather', Georgia, serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo .tagline {
+            font-size: 12px;
+            color: var(--accent-color);
+            display: block;
+            font-style: italic;
+            margin-top: -3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .auth-buttons .btn {
+            margin-left: 10px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-signup {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .verse {
+            font-style: italic;
+            margin: 30px auto;
+            max-width: 600px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--medium-gray);
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        /* Books Section */
+        .books {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .books-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .books-header h3 {
+            color: var(--secondary-color);
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .book-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .book-cover {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .book-info {
+            padding: 15px;
+        }
+        
+        .book-info h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .book-info p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .category-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .category-card:hover a {
+            color: white;
+        }
+        
+        /* Bible Tools Section */
+        .bible-tools {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tool-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .bible-search {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .bible-search select, .bible-search input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .bible-search button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a3a4e;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .mission-statement {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .auth-buttons {
+                margin-top: 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .bible-search {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="GraceBooks Logo">
+                <div>
+                    <h1>GraceBooks</h1>
+                    <span class="tagline">Freely you have received, freely give (Matthew 10:8)</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="#">Bible Study</a></li>
+                <li><a href="#">Commentaries</a></li>
+                <li><a href="#">Sermons</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-login">Login</button>
+                <button class="btn btn-signup">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Christian Resources for Spiritual Growth</h2>
+            <p>Access thousands of free Christian books, Bible commentaries, sermons, and study materials from trusted theologians and pastors.</p>
+            
+            <div class="verse">
+                "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness" - 2 Timothy 3:16
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for books, Bible verses, or topics...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h3>Our Mission</h3>
+                <p>GraceBooks exists to spread the Gospel by making Christian literature freely available worldwide</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">ðŸ“–</div>
+                    <h4>Biblical Resources</h4>
+                    <p>Access hundreds of Bible translations, commentaries, and study guides to deepen your understanding of Scripture.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">âœï¸</div>
+                    <h4>Theological Works</h4>
+                    <p>Classic and contemporary Christian theology from trusted authors across denominations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">ðŸ™</div>
+                    <h4>Devotionals</h4>
+                    <p>Daily devotionals and spiritual growth materials to strengthen your walk with Christ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦</div>
+                    <h4>Family Ministry</h4>
+                    <p>Resources for Christian parenting, marriage, and children's ministry.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">ðŸŒ</div>
+                    <h4>Mission Focus</h4>
+                    <p>Biographies of missionaries and resources for global evangelism.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">ðŸŽ§</div>
+                    <h4>Audio Resources</h4>
+                    <p>Sermons, audiobooks, and Bible readings for listening on the go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Books Section -->
+    <section class="books">
+        <div class="container">
+            <div class="books-header">
+                <h3>Featured Christian Classics</h3>
+                <a href="#">View All â†’</a>
+            </div>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <span style="color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Mere Christianity</span>
+                    </div>
+                    <div class="book-info">
+                        <h4>Mere Christianity</h4>
+                        <p>C.S. Lewis</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <span style="color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">The Pilgrim's Progress</span>
+                    </div>
+                    <div class="book-info">
+                        <h4>The Pilgrim's Progress</h4>
+                        <p>John Bunyan</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <span style="color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Knowing God</span>
+                    </div>
+                    <div class="book-info">
+                        <h4>Knowing God</h4>
+                        <p>J.I. Packer</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1510172951991-856a62a9e395?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <span style="color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">The Cost of Discipleship</span>
+                    </div>
+                    <div class="book-info">
+                        <h4>The Cost of Discipleship</h4>
+                        <p>Dietrich Bonhoeffer</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1510172951991-856a62a9e395?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <span style="color: white; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">The Pursuit of God</span>
+                    </div>
+                    <div class="book-info">
+                        <h4>The Pursuit of God</h4>
+                        <p>A.W. Tozer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h3>Browse by Category</h3>
+                <p>Explore our collection organized by topic and denomination</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <a href="#">Bible Study</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Theology</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Church History</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Devotionals</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Apologetics</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Christian Living</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Sermons</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Commentaries</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Missionary Biographies</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Reformation</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Puritan Works</a>
+                </div>
+                <div class="category-card">
+                    <a href="#">Hymns & Worship</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bible Tools Section -->
+    <section class="bible-tools">
+        <div class="container">
+            <div class="section-title">
+                <h3>Bible Study Tools</h3>
+                <p>Search and compare Bible translations</p>
+            </div>
+            <div class="tool-card">
+                <h3>Bible Verse Lookup</h3>
+                <div class="bible-search">
+                    <select>
+                        <option>KJV</option>
+                        <option>ESV</option>
+                        <option>NIV</option>
+                        <option>NASB</option>
+                        <option>CSB</option>
+                    </select>
+                    <input type="text" placeholder="Book (e.g. John)">
+                    <input type="number" placeholder="Chapter" min="1">
+                    <input type="number" placeholder="Verse" min="1">
+                    <button>Search</button>
+                </div>
+                <p>Or browse our <a href="#">Bible reading plans</a> and <a href="#">study guides</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>GraceBooks</h4>
+                    <p class="mission-statement">"For the word of God is alive and active. Sharper than any double-edged sword..." - Hebrews 4:12</p>
+                    <p>Our mission is to spread the Gospel by making Christian literature freely available worldwide.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Bible Translations</a></li>
+                        <li><a href="#">Commentaries</a></li>
+                        <li><a href="#">Sermon Archives</a></li>
+                        <li><a href="#">Study Guides</a></li>
+                        <li><a href="#">Daily Devotionals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Ministry</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Our Mission</a></li>
+                        <li><a href="#">Support Our Work</a></li>
+                        <li><a href="#">Request Materials</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 GraceBooks Christian Digital Library. All resources provided for educational purposes only.</p>
+                <p>We respect copyright laws and only provide materials that are in the public domain or available for free distribution.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
